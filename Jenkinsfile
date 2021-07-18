@@ -14,20 +14,18 @@ pipeline {
         }
         stage('git clone') {
             steps {
-                sh 'sudo rm -r *;sudo git clone https://github.com/deepan4cloud/azure.git'
-                sh 'pwd'
+                git clone https://github.com/karthickg75/AzureJenkinsPipeline.git C:\JenkinsRepo
             }
         }
   
         stage('terraform init'){
             steps{
-                sh 'pwd'
-                sh 'ls -al; sudo /usr/bin/terraform -chdir=azure/ init'
+                sh 'C:\JenkinsRepo\terraform -chdir=azure\ init'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'ls ./azure; sudo /usr/bin/terraform -chdir=azure/ plan'
+                sh 'C:\JenkinsRepo\terraform -chdir=azure/ plan'
             }
         }
         
